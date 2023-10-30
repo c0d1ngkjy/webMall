@@ -8,6 +8,9 @@
 
     <q-list separator :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
       <q-item v-for="book in books" :key="book">
+        <!-- <q-item-section avatar>
+          <q-img alt="book image"></q-img>
+        </q-item-section> -->
         <q-item-section>
           <q-item-label overline class="text-bold text-subtitle1" >[{{ book.bookData.name }}]</q-item-label>
           <q-item-label>{{ book.bookData.description }}</q-item-label>
