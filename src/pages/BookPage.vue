@@ -2,11 +2,11 @@
   <q-page class="">
     <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
 
-    <div class="q-px-xl q-py-md">
+    <div :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
       <q-btn @click="$router.push('/book/uploadbook')" unelevated class="q-ml-md bg-green-6 text-white" size="sm">새로운 도서 업로드</q-btn>
     </div>
 
-    <q-list separator class="q-py-md q-px-xl">
+    <q-list separator :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
       <q-item v-for="book in books" :key="book">
         <q-item-section>
           <q-item-label overline class="text-bold text-subtitle1" >[{{ book.bookData.name }}]</q-item-label>
@@ -38,7 +38,7 @@
 
 <script>
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { createBook, getAllBooks } from '../services/books.js'
+import { getAllBooks } from '../services/books.js'
 import { Screen } from 'quasar';
 
 export default defineComponent({
