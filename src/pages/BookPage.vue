@@ -9,7 +9,7 @@
     <q-list separator :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
       <q-item v-for="book in books" :key="book">
         <q-item-section avatar>
-          <q-img :src="book.bookData?.bookCoverRef" alt="book cover img"></q-img>
+          <q-img width="3vw" :src="book.bookData.bookCoverRef ? book.bookData.bookCoverRef : bookCoverPlaceHolderUrl" alt="book cover placeholder img"></q-img>
         </q-item-section>
         <q-item-section>
           <q-item-label overline class="text-bold text-subtitle1" >[{{ book.bookData.name }}]</q-item-label>
@@ -51,6 +51,7 @@ export default defineComponent({
     const books = ref([]);
     const loadingState = ref();
     const isMobile = computed(() => Screen.lt.sm)
+    const bookCoverPlaceHolderUrl = require('src/assets/bookCoverPlaceHolder.png');
 
     async function fetchData() {
       loadingState.value = true
@@ -66,7 +67,8 @@ export default defineComponent({
     return{
       books,
       loadingState,
-      isMobile
+      isMobile,
+      bookCoverPlaceHolderUrl
     }
   }
 })
