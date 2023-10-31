@@ -3,6 +3,7 @@
     <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Book Info</div>
 
     <div class="q-px-xl q-py-md">
+      <q-img class="q-mb-md" :src="currentBook.data?.bookCoverRef" width="300px" alt="book cover img"></q-img>
       <div class="text-bold text-h6 q-mb-md">[{{ currentBook.data?.name }}]</div>
       <q-separator></q-separator>
       <div class="q-py-md">{{ currentBook.data?.description }}</div>

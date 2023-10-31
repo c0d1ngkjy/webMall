@@ -19,16 +19,31 @@
         <q-radio val="ebook" v-model="newBookData.condition">ebook</q-radio>
       </div>
 
-      <q-file></q-file>
+      <q-file
+        label="도서 표지 업로드"
+        borderless
+        accept=".jpg, image/*"
+        max-files="1"
+        max-file-size="100000"
+        v-model="bookImageFile"
+        @update:model-value="addImageHandler"
+      >
+        <template v-slot:prepend>
+          <q-icon name="attach_file" />
+        </template>
+      </q-file>
+
+      <q-img :src="imagePreviewLink" width="500px"></q-img>
 
       <div class="row q-gutter-sm q-py-md">
         <q-btn @click="uploadNewBook()" unelevated class="bg-green-6 text-white">등록</q-btn>
         <q-btn to="/book" unelevated class="bg-grey-6 text-white">취소</q-btn>
       </div>
+
     </q-form>
 
 
-    <q-inner-loading :showing="loadingState"/>
+    <q-inner-loading :showing="loadingState" color="black"/>
   </q-page>
 </template>
 
@@ -37,6 +52,9 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { createBook, getAllBooks } from '../services/books.js'
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
+import { storage } from "src/boot/firebase";
+import { ref as firebaseStorageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import {v4} from "uuid";
 
 export default defineComponent({
   name: 'BookPage',
@@ -44,14 +62,23 @@ export default defineComponent({
   setup() {
     const loadingState = ref();
     const newBookData = ref({})
+    const bookImageFile = ref();
+    const imagePreviewLink = ref();
+    const uploadedImageUrl = ref();
+    const storageRef = firebaseStorageRef(storage, "books");
     const formRef = ref()
     const $router = useRouter()
     const $q = useQuasar()
 
     async function uploadNewBook() {
       loadingState.value = true
-      //console.log(newBookData.value)
-      const res = await createBook(newBookData.value);
+      await uploadImage();
+
+      const res = await createBook({
+        ...newBookData.value,
+        bookCoverRef: uploadedImageUrl.value
+      });
+
       console.log(res)
 
       loadingState.value = false
@@ -62,15 +89,36 @@ export default defineComponent({
       $router.push(`/book/info/${res}`);
     }
 
-    onMounted(() => {
+    function onRejected() {
+      $q.notify({
+        message: '파일 업로드 실패',
+        color: 'negative'
+      })
+    }
 
-    })
+    function addImageHandler() {
+        imagePreviewLink.value = URL.createObjectURL(bookImageFile.value)
+    }
+
+    async function uploadImage() {
+      const imageRef = firebaseStorageRef(storageRef, bookImageFile.value.name + v4());
+        return uploadBytes(imageRef, bookImageFile.value).then((snapshot) => {
+          return getDownloadURL(snapshot.ref).then((url) => {
+            uploadedImageUrl.value = url;
+            return url;
+          });
+        });
+    }
 
     return{
       loadingState,
       newBookData,
       uploadNewBook,
-      formRef
+      formRef,
+      onRejected,
+      bookImageFile,
+      imagePreviewLink,
+      addImageHandler
     }
   }
 })
