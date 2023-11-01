@@ -3,7 +3,7 @@
     <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
 
     <div :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md q-px-md row justify-between">
-      <!-- <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-secondary text-white" size="sm">새로운 도서 업로드</q-btn> -->
+      <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-secondary text-white" size="sm">새로운 도서 업로드</q-btn>
       <div>
         <q-btn dense unelevated @click="handleView">
           <q-icon color="primary" :name="listView ? 'grid_view' : 'reorder'" />

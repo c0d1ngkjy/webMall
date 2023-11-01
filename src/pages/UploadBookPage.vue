@@ -3,15 +3,15 @@
     <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
 
     <q-form ref="formRef" class="q-px-xl column items-start">
-      <q-input label="도서명" v-model="newBookData.name"></q-input>
-      <q-input label="도서 설명" v-model="newBookData.description"></q-input>
-      <q-input label="저자" v-model="newBookData.author"></q-input>
-      <q-input label="출판사" v-model="newBookData.publisher"></q-input>
+      <q-input maxlength="20" label="도서명" v-model="newBookData.name"></q-input>
+      <q-input maxlength="200" label="도서 설명" v-model="newBookData.description"></q-input>
+      <q-input maxlength="10" label="저자" v-model="newBookData.author"></q-input>
+      <q-input maxlength="10" label="출판사" v-model="newBookData.publisher"></q-input>
       <q-input type="date" label="출간일" v-model="newBookData.releaseDate"></q-input>
-      <q-input type="number" label="총 페이지수" v-model="newBookData.totalPages"></q-input>
-      <q-input type="text" label="카테고리" v-model="newBookData.category"></q-input>
-      <q-input type="number" label="가격" v-model="newBookData.unitPrice"></q-input>
-      <q-input type="number" label="재고" v-model="newBookData.unitsInStock"></q-input>
+      <q-input maxlength="5" type="number" label="총 페이지수" v-model="newBookData.totalPages"></q-input>
+      <q-input maxlength="10" type="text" label="카테고리" v-model="newBookData.category"></q-input>
+      <q-input maxlength="10" type="number" label="가격" v-model="newBookData.unitPrice"></q-input>
+      <q-input maxlength="10" type="number" label="재고" v-model="newBookData.unitsInStock"></q-input>
 
       <div>
         <q-radio val="new" v-model="newBookData.condition">new</q-radio>
