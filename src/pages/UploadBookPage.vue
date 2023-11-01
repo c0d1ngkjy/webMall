@@ -33,13 +33,12 @@
         </template>
       </q-file>
 
-      <q-img :src="imagePreviewLink" width="500px"></q-img>
+      <q-img v-if="imagePreviewLink" :src="imagePreviewLink" width="500px"></q-img>
 
       <div class="row q-gutter-sm q-py-md">
         <q-btn @click="uploadNewBook()" unelevated class="bg-green-6 text-white">등록</q-btn>
         <q-btn to="/book" unelevated class="bg-grey-6 text-white">취소</q-btn>
       </div>
-
     </q-form>
 
 

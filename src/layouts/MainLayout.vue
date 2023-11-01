@@ -15,7 +15,7 @@
           Home
         </q-toolbar-title>
 
-        <div class="text-caption">2022671067 김주윤</div>
+        <div class="text-caption text-grey">v.alpha0.0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -35,8 +35,9 @@
       </q-list>
     </q-drawer>
 
-    <q-footer :reveal=true class="bg-grey-3 text-black">
-      <div class="q-pa-md">&copy; webMall</div>
+    <q-footer :reveal=true class="bg-grey-3 text-black row items-center justify-between q-pa-md">
+      <div class="">&copy; webMall</div>
+      <div class="text-caption">인터넷보안공학과 2022671067 김주윤</div>
     </q-footer>
 
     <q-page-container>
