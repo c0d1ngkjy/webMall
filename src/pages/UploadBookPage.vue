@@ -79,11 +79,9 @@ export default defineComponent({
         bookCoverRef: uploadedImageUrl.value
       });
 
-      //console.log(res)
-
       loadingState.value = false
       $q.notify({
-        message: '도서 등록 완료',
+        message: 'book uploaded successfully',
         color: 'positive'
       })
       $router.push(`/book/info/${res}`);
@@ -91,7 +89,7 @@ export default defineComponent({
 
     function onRejected() {
       $q.notify({
-        message: '파일 업로드 실패',
+        message: 'file upload error',
         color: 'negative'
       })
     }

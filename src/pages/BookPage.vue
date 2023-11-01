@@ -14,7 +14,7 @@
 
     <q-separator></q-separator>
 
-    <q-list v-if="listView == true" separator :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
+    <q-list v-if="listView == true" separator :class="isMobile ? 'q-px-xs' : 'q-px-xl'" class="q-py-md">
       <q-item v-for="book in books" :key="book">
         <q-item-section avatar>
           <q-img :width="isMobile ? '10vw' : '3vw'" :src="book.bookData.bookCoverRef ? book.bookData.bookCoverRef : bookCoverPlaceHolderUrl" alt="book cover placeholder img"></q-img>
@@ -38,15 +38,15 @@
         </q-item-section>
 
         <q-item-section class="col-1">
-          <q-btn size="sm" unelevated class="bg-primary text-white" :to="`book/info/${book.bookId}`">book info</q-btn>
+          <q-btn :size="isMobile ? 'xs' : 'sm'" unelevated class="bg-primary text-white" :to="`book/info/${book.bookId}`">book info</q-btn>
         </q-item-section>
       </q-item>
     </q-list>
 
-    <div class="flex q-gutter-md q-py-md"  v-if="listView == false" :class="isMobile ? 'q-px-sm' : 'q-px-xl'">
-      <q-card @click="$router.push(`book/info/${book.bookId}`)" flat bordered :style="isMobile ? 'width:40%' : 'width: 300px'" class="column justify-between content-center items-center q-pa-sm cursor-pointer" v-for="book in books" :key="book">
+    <div class="row justify-start q-gutter-md q-py-md"  v-if="listView == false" :class="isMobile ? 'q-px-sm' : 'q-px-xl'">
+      <q-card @click="$router.push(`book/info/${book.bookId}`)" flat :style="isMobile ? 'width:90%' : 'width: 30%'" class="column justify-between bg-accent content-center items-center q-pa-sm cursor-pointer" v-for="book in books" :key="book">
         <div>
-          <q-img width="10vw" :src="book.bookData.bookCoverRef ? book.bookData.bookCoverRef : bookCoverPlaceHolderUrl" alt="book cover placeholder img"></q-img>
+          <q-img :width="isMobile ? '50vw' : '10vw'" :src="book.bookData.bookCoverRef ? book.bookData.bookCoverRef : bookCoverPlaceHolderUrl" alt="book cover placeholder img"></q-img>
         </div>
         <div class="text-bold text-subtitle1">
           [{{ book.bookData.name }}]
