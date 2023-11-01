@@ -4,6 +4,7 @@ import { addDoc, collection, getDoc, getDocs, doc, orderBy } from "firebase/fire
 
 export async function getAllBooks() {
   const querySnapshot = await getDocs(collection(db, "books"));
+
   const bookList = [];
 
   querySnapshot.docs.forEach((doc) => {

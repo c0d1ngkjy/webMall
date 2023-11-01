@@ -73,11 +73,20 @@ export default defineComponent({
     async function uploadNewBook() {
       loadingState.value = true
       await uploadImage();
+      let res;
 
-      const res = await createBook({
-        ...newBookData.value,
-        bookCoverRef: uploadedImageUrl.value
-      });
+      if(bookImageFile.value) {
+        res = await createBook({
+            ...newBookData.value,
+            createdDate: new Date(),
+            bookCoverRef: uploadedImageUrl.value
+        });
+      } else {
+        res = await createBook({
+            ...newBookData.value,
+            createdDate: new Date(),
+        });
+      }
 
       loadingState.value = false
       $q.notify({
@@ -99,13 +108,15 @@ export default defineComponent({
     }
 
     async function uploadImage() {
-      const imageRef = firebaseStorageRef(storageRef, bookImageFile.value.name + v4());
-        return uploadBytes(imageRef, bookImageFile.value).then((snapshot) => {
-          return getDownloadURL(snapshot.ref).then((url) => {
-            uploadedImageUrl.value = url;
-            return url;
+      if(bookImageFile.value) {
+        const imageRef = firebaseStorageRef(storageRef, bookImageFile.value.name + v4());
+          return uploadBytes(imageRef, bookImageFile.value).then((snapshot) => {
+            return getDownloadURL(snapshot.ref).then((url) => {
+              uploadedImageUrl.value = url;
+              return url;
+            });
           });
-        });
+      }
     }
 
     return{
