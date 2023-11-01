@@ -1,6 +1,6 @@
 <template>
   <q-page class="">
-    <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
+    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
 
     <q-form ref="formRef" class="q-px-xl column items-start">
       <q-input label="도서명" v-model="newBookData.name"></q-input>

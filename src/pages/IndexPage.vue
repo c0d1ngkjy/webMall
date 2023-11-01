@@ -1,11 +1,20 @@
 <template>
   <q-page class="">
-    <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Welcome to myMall</div>
+    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Welcome to myMall!</div>
     <div class="q-pa-md q-mb-md">
-      <div class="text-center q-pa-lg">welcome to webmarket!</div>
-      <div class="text-center q-py-sm">
-        현잭시각 : {{ clock }}
-      </div>
+      <q-card flat class="flex flex-center">
+        <q-card-section class="column bg-grey-3">
+          <div class="shadow-1 q-py-sm q-px-md q-mb-sm text-h5 bg-deep-orange-5 text-white text-bold" style="border-radius: 15px;">Clock</div>
+          <div class="row q-gutter-sm">
+            <div class="shadow-1 q-py-sm q-px-md bg-white text-red-5 text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.amPm }}</div>
+            <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.h }}</div>
+            <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">:</div>
+            <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.m }}</div>
+            <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">:</div>
+            <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.s }}</div>
+          </div>
+        </q-card-section>
+      </q-card>
     </div>
   </q-page>
 </template>
@@ -17,7 +26,7 @@ export default defineComponent({
   name: 'IndexPage',
 
   setup() {
-    const clock = ref();
+    const clock = ref({});
 
     onMounted(() => {
       setInterval(() => {
@@ -34,7 +43,13 @@ export default defineComponent({
           }
         }
 
-        clock.value = `${hours} : ${minutes} : ${seconds} ${amPm}`;
+        //clock.value = `${hours} : ${minutes} : ${seconds} ${amPm}`;
+        clock.value = {
+          h: hours,
+          m: minutes,
+          s: seconds,
+          amPm: amPm
+        };
       }, 1000);
     })
 

@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="bg-black" elevated>
+    <q-header class="" elevated>
       <q-toolbar>
         <q-btn
           flat
@@ -15,7 +15,7 @@
           Home
         </q-toolbar-title>
 
-        <div class="text-caption text-grey">v.alpha0.0.1</div>
+        <div class="text-caption text-white">v.alpha0.0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -26,7 +26,7 @@
       bordered
     >
       <q-list class="q-py-">
-        <q-item :active="currentLink == nav.link" active-class="bg-grey-3" class="row items-center" :to="nav.link" v-for="nav in navs" :key="nav">
+        <q-item :active="currentLink == nav.link" active-class="bg-primary text-dark" class="row items-center" :to="nav.link" v-for="nav in navs" :key="nav">
             <img :src="nav.icon" alt="icon" width="15">
             <div class="q-ml-sm">
               {{ nav.label }}

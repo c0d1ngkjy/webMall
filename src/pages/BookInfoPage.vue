@@ -1,6 +1,6 @@
 <template>
   <q-page class="">
-    <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Book Info</div>
+    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Book Info</div>
 
     <div class="q-px-xl q-py-md">
       <div v-if="currentBook.data?.bookCoverRef != undefined">

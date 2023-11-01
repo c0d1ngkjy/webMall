@@ -1,15 +1,17 @@
 <template>
   <q-page class="">
-    <div class="bg-grey-3 q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
+    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
 
     <div :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md q-px-md row justify-between">
-      <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-green-6 text-white" size="sm">새로운 도서 업로드</q-btn>
+      <!-- <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-secondary text-white" size="sm">새로운 도서 업로드</q-btn> -->
       <div>
         <q-btn dense unelevated @click="handleView">
-          <q-icon :name="listView ? 'grid_view' : 'reorder'" />
+          <q-icon color="primary" :name="listView ? 'grid_view' : 'reorder'" />
         </q-btn>
       </div>
     </div>
+
+    <q-separator></q-separator>
 
     <q-list v-if="listView == true" separator :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md">
       <q-item v-for="book in books" :key="book">
@@ -46,7 +48,7 @@
           <q-img width="10vw" :src="book.bookData.bookCoverRef ? book.bookData.bookCoverRef : bookCoverPlaceHolderUrl" alt="book cover placeholder img"></q-img>
         </div>
         <div class="text-bold text-subtitle1">
-          {{ book.bookData.name }}
+          [{{ book.bookData.name }}]
         </div>
       </q-card>
     </div>
