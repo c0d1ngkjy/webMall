@@ -1,17 +1,18 @@
 <template>
-  <q-page class="">
-    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
+  <q-page class="bg-secondary">
+    <div class="q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
+    <q-separator></q-separator>
 
     <q-form ref="formRef" class="q-px-xl column items-start">
-      <q-input maxlength="20" label="도서명" v-model="newBookData.name"></q-input>
-      <q-input maxlength="200" label="도서 설명" v-model="newBookData.description"></q-input>
-      <q-input maxlength="10" label="저자" v-model="newBookData.author"></q-input>
-      <q-input maxlength="10" label="출판사" v-model="newBookData.publisher"></q-input>
-      <q-input type="date" label="출간일" v-model="newBookData.releaseDate"></q-input>
-      <q-input maxlength="5" type="number" label="총 페이지수" v-model="newBookData.totalPages"></q-input>
-      <q-input maxlength="10" type="text" label="카테고리" v-model="newBookData.category"></q-input>
-      <q-input maxlength="10" type="number" label="가격" v-model="newBookData.unitPrice"></q-input>
-      <q-input maxlength="10" type="number" label="재고" v-model="newBookData.unitsInStock"></q-input>
+      <q-input maxlength="20" label="title" v-model="newBookData.name"></q-input>
+      <q-input maxlength="200" label="description" v-model="newBookData.description"></q-input>
+      <q-input maxlength="10" label="author" v-model="newBookData.author"></q-input>
+      <q-input maxlength="10" label="publisher" v-model="newBookData.publisher"></q-input>
+      <q-input type="date" label="date of publish" v-model="newBookData.releaseDate"></q-input>
+      <q-input maxlength="5" type="number" label="number of pages" v-model="newBookData.totalPages"></q-input>
+      <q-input maxlength="10" type="text" label="category" v-model="newBookData.category"></q-input>
+      <q-input maxlength="10" type="number" label="price" v-model="newBookData.unitPrice"></q-input>
+      <q-input maxlength="10" type="number" label="stock" v-model="newBookData.unitsInStock"></q-input>
 
       <div>
         <q-radio val="new" v-model="newBookData.condition">new</q-radio>
@@ -20,11 +21,11 @@
       </div>
 
       <q-file
-        label="도서 표지 업로드"
-        borderless
-        accept=".jpg, image/*"
+        label="upload book cover"
+        outlined
+        accept=".jpg, .png, image/*"
         max-files="1"
-        max-file-size="100000"
+        max-file-size="300000"
         v-model="bookImageFile"
         @update:model-value="addImageHandler"
       >
@@ -33,16 +34,16 @@
         </template>
       </q-file>
 
-      <q-img v-if="imagePreviewLink" :src="imagePreviewLink" width="500px"></q-img>
+      <q-img v-if="imagePreviewLink" :src="imagePreviewLink" width="30vw"></q-img>
 
       <div class="row q-gutter-sm q-py-md">
-        <q-btn @click="uploadNewBook()" unelevated class="bg-green-6 text-white">등록</q-btn>
-        <q-btn to="/book" unelevated class="bg-grey-6 text-white">취소</q-btn>
+        <q-btn @click="uploadNewBook()" unelevated class="bg-green-6 text-white">upload</q-btn>
+        <q-btn to="/book" unelevated class="bg-grey-6 text-white">cancel</q-btn>
       </div>
     </q-form>
 
 
-    <q-inner-loading :showing="loadingState" color="black"/>
+    <q-inner-loading :showing="loadingState" color="primary"/>
   </q-page>
 </template>
 
@@ -78,7 +79,7 @@ export default defineComponent({
         bookCoverRef: uploadedImageUrl.value
       });
 
-      console.log(res)
+      //console.log(res)
 
       loadingState.value = false
       $q.notify({

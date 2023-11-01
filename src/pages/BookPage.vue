@@ -1,12 +1,13 @@
 <template>
-  <q-page class="">
-    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
+  <q-page class="bg-secondary">
+    <div class="q-pa-xl text-h3 text-center text-weight-thin">Books for sale</div>
+    <q-separator></q-separator>
 
     <div :class="isMobile ? 'q-px-sm' : 'q-px-xl'" class="q-py-md q-px-md row justify-between">
-      <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-secondary text-white" size="sm">새로운 도서 업로드</q-btn>
+      <q-btn @click="$router.push('/book/uploadbook')" unelevated class="bg-green-6 text-white" size="sm">upload new book</q-btn>
       <div>
         <q-btn dense unelevated @click="handleView">
-          <q-icon color="primary" :name="listView ? 'grid_view' : 'reorder'" />
+          <q-icon size="md" color="primary" :name="listView ? 'grid_view' : 'reorder'" />
         </q-btn>
       </div>
     </div>
@@ -37,7 +38,7 @@
         </q-item-section>
 
         <q-item-section class="col-1">
-          <q-btn size="sm" unelevated class="bg-grey-6 text-white" :to="`book/info/${book.bookId}`">상세정보</q-btn>
+          <q-btn size="sm" unelevated class="bg-primary text-white" :to="`book/info/${book.bookId}`">book info</q-btn>
         </q-item-section>
       </q-item>
     </q-list>
@@ -53,7 +54,7 @@
       </q-card>
     </div>
 
-    <q-inner-loading :showing="loadingState"/>
+    <q-inner-loading :showing="loadingState" color="primary"/>
   </q-page>
 </template>
 
@@ -76,12 +77,12 @@ export default defineComponent({
       loadingState.value = true
       books.value = await getAllBooks();
       loadingState.value = false
-      console.log(books.value)
+      //console.log(books.value)
     }
 
     function handleView() {
       listView.value = !listView.value
-      console.log(listView.value)
+      //console.log(listView.value)
     }
 
 

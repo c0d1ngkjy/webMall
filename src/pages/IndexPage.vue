@@ -1,10 +1,11 @@
 <template>
-  <q-page class="">
-    <div class="bg-deep-orange-3 text-white q-pa-xl text-h3 text-center text-weight-thin">Welcome to myMall!</div>
+  <q-page class="bg-secondary">
+    <div class="q-pa-xl text-h3 text-center text-weight-thin">Welcome to my BookMall</div>
+    <q-separator></q-separator>
     <div class="q-pa-md q-mb-md">
-      <q-card flat class="flex flex-center">
-        <q-card-section class="column bg-grey-3">
-          <div class="shadow-1 q-py-sm q-px-md q-mb-sm text-h5 bg-deep-orange-5 text-white text-bold" style="border-radius: 15px;">Clock</div>
+      <q-card flat class="flex flex-center bg-secondary">
+        <q-card-section class="column">
+          <div class="shadow-1 q-py-sm q-px-md q-mb-sm text-h5 bg-deep-orange-5 text-white text-bold" style="border-radius: 15px;">Current Time</div>
           <div class="row q-gutter-sm">
             <div class="shadow-1 q-py-sm q-px-md bg-white text-red-5 text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.amPm }}</div>
             <div class="shadow-1 q-py-sm q-px-md bg-deep-purple-3 text-white text-bold" style="font-size: 18px; border-radius: 15px;">{{ clock.h }}</div>
