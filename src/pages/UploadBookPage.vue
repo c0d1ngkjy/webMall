@@ -8,7 +8,7 @@
       <q-input maxlength="200" label="description" v-model="newBookData.description"></q-input>
       <q-input maxlength="10" label="author" v-model="newBookData.author"></q-input>
       <q-input maxlength="10" label="publisher" v-model="newBookData.publisher"></q-input>
-      <q-input type="date" label="date of publish" v-model="newBookData.releaseDate"></q-input>
+      <q-input type="text" maxlength="11" label="date of publish(xxxx-xx-xx)" v-model="newBookData.releaseDate"></q-input>
       <q-input maxlength="5" type="number" label="number of pages" v-model="newBookData.totalPages"></q-input>
       <q-input maxlength="10" type="text" label="category" v-model="newBookData.category"></q-input>
       <q-input maxlength="10" type="number" label="price" v-model="newBookData.unitPrice"></q-input>
@@ -23,7 +23,6 @@
       <q-file
         label="upload book cover"
         outlined
-        accept=".jpg, .png, image/*"
         max-files="1"
         max-file-size="300000"
         v-model="bookImageFile"

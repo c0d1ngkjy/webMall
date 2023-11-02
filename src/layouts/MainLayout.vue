@@ -23,12 +23,12 @@
       :width=200
       v-model="leftDrawerOpen"
       show-if-above
-      bordered
-      class="bg-accent"
+
+      class=""
     >
       <q-list class="q-py-">
-        <q-item :active="currentLink == nav.link" active-class="bg-primary text-dark" class="row items-center" :to="nav.link" v-for="nav in navs" :key="nav">
-            <img :src="nav.icon" alt="icon" width="15">
+        <q-item :active="currentLink == nav.link" active-class="text-bold" class="row items-center" :to="nav.link" v-for="nav in navs" :key="nav">
+            <!-- <img :src="nav.icon" alt="icon" width="15"> -->
             <div class="q-ml-sm">
               {{ nav.label }}
             </div>
@@ -36,9 +36,8 @@
       </q-list>
     </q-drawer>
 
-    <q-footer :reveal=true class="bg-grey-2 text-black row items-center justify-between q-pa-md">
-      <div class="">&copy; book mall</div>
-      <div class="text-caption">인터넷보안공학과 2022671067 김주윤</div>
+    <q-footer :reveal=true class="bg-grey-2 text-black q-pa-md">
+      <div class="text-caption">&copy; 인터넷보안공학과 2022671067 김주윤</div>
     </q-footer>
 
     <q-page-container>
@@ -71,7 +70,7 @@ export default defineComponent({
       () => $route.path,
       (newPath, oldPath) => {
         currentLink.value = '/' + newPath.split('/')[1];
-        console.log(currentLink.value);
+        //console.log(currentLink.value);
       }
     );
 

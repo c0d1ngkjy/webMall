@@ -24,7 +24,7 @@
         <div>pages: {{ currentBook.data?.totalPages }}</div>
         <div>publish date : {{ currentBook.data?.releaseDate }}</div>
       </div>
-      <div class="text-bold text-h6 q-my-md q-py-sm q-px-md bg-accent" style="max-width: 200px; border-radius: 15px;">{{ currentBook.data?.unitPrice }} won</div>
+      <div class="text-bold text-h6 q-my-md q-py-sm q-px-md bg-primary text-white" style="max-width: 200px; border-radius: 15px;">{{ currentBook.data?.unitPrice }} won</div>
       <div>
         <q-btn unelevated class="bg-green-6 text-white q-mr-sm">purchase</q-btn>
         <q-btn unelevated class="bg-grey-6 text-white" to="/book">list</q-btn>
