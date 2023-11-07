@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-secondary">
+  <q-page class="bg-white">
     <div class="q-pa-xl text-h3 text-center text-weight-thin">Upload new book</div>
     <q-separator></q-separator>
 

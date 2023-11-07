@@ -1,43 +1,21 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="" elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title class="text-weight-thin cursor-pointer" @click="$router.push('/')">
-          Home
+    <q-header elevated>
+      <q-toolbar class="column content-center">
+        <q-toolbar-title class="text-weight-bold q-pt-md q-pb-sm text-h4 cursor-pointer" @click="$router.push('/')">
+          Book Mall
         </q-toolbar-title>
 
-        <div class="text-caption text-white">v.alpha0.0.1</div>
+        <q-tabs dense v-model="currentLink" active-color="white" indicator-color="white" class="text-white">
+          <q-route-tab no-caps v-for="nav in navs" :key="nav" :name="nav.label" :label="nav.label" :to="nav.link" />
+        </q-tabs>
+
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      :width=200
-      v-model="leftDrawerOpen"
-      show-if-above
-
-      class=""
-    >
-      <q-list class="q-py-">
-        <q-item :active="currentLink == nav.link" active-class="text-bold" class="row items-center" :to="nav.link" v-for="nav in navs" :key="nav">
-            <!-- <img :src="nav.icon" alt="icon" width="15"> -->
-            <div class="q-ml-sm">
-              {{ nav.label }}
-            </div>
-        </q-item>
-      </q-list>
-    </q-drawer>
-
-    <q-footer :reveal=true class="bg-grey-2 text-black q-pa-md">
+    <q-footer :reveal=true class="bg-grey-2 text-black q-pa-md row justify-between">
       <div class="text-caption">&copy; 인터넷보안공학과 2022671067 김주윤</div>
+      <div class="text-caption">pre-alpha0.0.1</div>
     </q-footer>
 
     <q-page-container>
@@ -55,22 +33,18 @@ export default defineComponent({
 
   setup () {
     const $route = useRoute()
-    const leftDrawerOpen = ref(false)
-    const homeIcon = require('src/assets/home.svg');
-    const booksIcon = require('src/assets/book.svg')
 
     const navs = [
-      {label : "Home", link: "/", icon: homeIcon},
-      {label : "Books", link: "/book", icon: booksIcon},
+      {label : "Home", link: "/"},
+      {label : "Books", link: "/book"},
     ]
 
     const currentLink = ref('/');
 
     watch(
       () => $route.path,
-      (newPath, oldPath) => {
+      (newPath) => {
         currentLink.value = '/' + newPath.split('/')[1];
-        //console.log(currentLink.value);
       }
     );
 
@@ -79,12 +53,8 @@ export default defineComponent({
     })
 
     return {
-      leftDrawerOpen,
       navs,
       currentLink,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
     }
   }
 })
